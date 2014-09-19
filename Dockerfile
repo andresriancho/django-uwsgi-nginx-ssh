@@ -55,13 +55,13 @@ WORKDIR /home/docker/base/
 RUN rm -rf .git/
 RUN rm -rf .gitignore
 
-RUN ln -s /home/docker/base/docker/config/nginx.conf /etc/nginx/sites-enabled/
+RUN ln -s /home/docker/base/config/nginx.conf /etc/nginx/sites-enabled/
 
 # We want supervisord to run nginx and celery
-RUN ln -s /home/docker/base/docker/config/supervisord-nginx.conf /etc/supervisor/conf.d/
-RUN ln -s /home/docker/base/docker/config/supervisord-uwsgi.conf /etc/supervisor/conf.d/
-RUN ln -s /home/docker/base/docker/config/supervisord-sshd.conf /etc/supervisor/conf.d/
-RUN ln -s /home/docker/base/docker/config/supervisord-newrelic.conf /etc/supervisor/conf.d/
+RUN ln -s /home/docker/base/config/supervisord-nginx.conf /etc/supervisor/conf.d/
+RUN ln -s /home/docker/base/config/supervisord-uwsgi.conf /etc/supervisor/conf.d/
+RUN ln -s /home/docker/base/config/supervisord-sshd.conf /etc/supervisor/conf.d/
+RUN ln -s /home/docker/base/config/supervisord-newrelic.conf /etc/supervisor/conf.d/
 
 # Cleanup to reduce image size
 RUN apt-get clean
