@@ -1,6 +1,7 @@
 ## Base Django docker
 
 This docker image contains the following packages:
+
  * nginx
  * uwsgi
  * Django 1.5.1
