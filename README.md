@@ -40,3 +40,6 @@ something usable you'll have to:
     ```
     
  * Move your Django application `wsgi.py` file to the `/code/` directory
+ 
+ * Place your static and media files in `/home/docker/code/static/` and
+  `/home/docker/code/media/` respectively.
