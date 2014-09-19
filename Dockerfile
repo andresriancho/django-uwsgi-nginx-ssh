@@ -63,9 +63,6 @@ RUN ln -s /home/docker/base/docker/config/supervisord-uwsgi.conf /etc/supervisor
 RUN ln -s /home/docker/base/docker/config/supervisord-sshd.conf /etc/supervisor/conf.d/
 RUN ln -s /home/docker/base/docker/config/supervisord-newrelic.conf /etc/supervisor/conf.d/
 
-python manage.py syncdb --noinput
-python manage.py collectstatic -v0 --noinput
-
 # Cleanup to reduce image size
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/*
