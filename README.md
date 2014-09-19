@@ -34,5 +34,8 @@ something usable you'll have to:
     ```
 
  * ADD the Django application code to `/home/docker/code`
- 
+    ```bash
+    RUN cp myapp/wsgi.py wsgi.py
+    ```
+    
  * Move your Django application `wsgi.py` file to the `/code/` directory
