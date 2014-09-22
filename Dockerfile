@@ -15,7 +15,9 @@ RUN add-apt-repository -y ppa:nginx/stable
 RUN apt-get update
 
 # Install required packages
-RUN apt-get install -y build-essential git joe openssh-server coreutils gzip python python-dev python-setuptools wget ca-certificates nginx supervisor libssl-dev
+RUN apt-get install -y build-essential git joe openssh-server coreutils gzip \
+                       python python-dev python-setuptools wget ca-certificates \
+                       nginx supervisor libssl-dev
 
 # Build dependencies
 RUN easy_install pip==1.4.1
