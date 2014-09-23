@@ -9,7 +9,7 @@ This docker image contains the following packages:
  * new relic
  * supervisord
 
-Please note that it't just a base image, not production ready! In order to have
+Please note that it's just a base image, not production ready! In order to have
 something usable you'll have to:
 
  * Create your own Dockerfile and use andresriancho/django-uwsgi-nginx-ssh as it's base
@@ -43,3 +43,9 @@ something usable you'll have to:
  
  * Place your static and media files in `/home/docker/code/static/` and
   `/home/docker/code/media/` respectively.
+  
+## Pushing a new version
+```bash
+docker build -t andresriancho/django-uwsgi-nginx-ssh . 
+docker pull andresriancho/django-uwsgi-nginx-ssh
+```
