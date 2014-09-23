@@ -51,7 +51,7 @@ RUN echo "daemon off;" >> /etc/nginx/nginx.conf
 RUN rm /etc/nginx/sites-enabled/default
 
 # We trust github's SSH
-ssh-keyscan -H github.com > /etc/ssh/ssh_known_hosts
+RUN ssh-keyscan -H github.com > /etc/ssh/ssh_known_hosts
 
 # copy our code
 ADD . /home/docker/base/
