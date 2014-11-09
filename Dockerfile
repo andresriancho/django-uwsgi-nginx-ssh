@@ -79,4 +79,4 @@ EXPOSE 80
 EXPOSE 22
 
 # RUN supervisord with our configuration so that the daemons are started
-CMD ["/usr/bin/supervisord", "-n"]
+CMD ["supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
