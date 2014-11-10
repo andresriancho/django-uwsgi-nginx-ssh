@@ -22,8 +22,13 @@ deployment:
 
       # Push the new image to docker registry
       - sed "s/<EMAIL>/$DOCKER_EMAIL/;s/<AUTH>/$DOCKER_AUTH/" < dockercfg.template > ~/.dockercfg
+
       - docker tag andresriancho/django-uwsgi-nginx-ssh:${CIRCLE_SHA1:0:7}-production andresriancho/django-uwsgi-nginx-ssh:production
+      - docker tag andresriancho/django-uwsgi-nginx-ssh:${CIRCLE_SHA1:0:7}-production andresriancho/django-uwsgi-nginx-ssh:latest
+
       - docker push andresriancho/django-uwsgi-nginx-ssh:${CIRCLE_SHA1:0:7}-production
+      - docker push andresriancho/django-uwsgi-nginx-ssh:production
+      - docker push andresriancho/django-uwsgi-nginx-ssh:latest
 
   staging:
     branch: develop
@@ -36,5 +41,8 @@ deployment:
 
       # Push the new image to docker registry
       - sed "s/<EMAIL>/$DOCKER_EMAIL/;s/<AUTH>/$DOCKER_AUTH/" < dockercfg.template > ~/.dockercfg
+
       - docker tag andresriancho/django-uwsgi-nginx-ssh:${CIRCLE_SHA1:0:7}-staging andresriancho/django-uwsgi-nginx-ssh:staging
+
       - docker push andresriancho/django-uwsgi-nginx-ssh:${CIRCLE_SHA1:0:7}-staging
+      - docker push andresriancho/django-uwsgi-nginx-ssh:staging
