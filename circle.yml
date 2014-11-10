@@ -2,10 +2,6 @@ machine:
   services:
     - docker
 
-test:
-  override:
-    - true
-
 #
 # The builds at registry.hub.docker.com are awfully slow. Building at CI and
 # pushing to the registry.
