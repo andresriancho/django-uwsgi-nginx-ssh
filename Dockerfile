@@ -17,7 +17,7 @@ RUN apt-get update
 # Install required packages
 RUN apt-get install -y build-essential git joe openssh-server coreutils gzip \
                        python python-dev python-setuptools wget ca-certificates \
-                       nginx supervisor libssl-dev
+                       nginx supervisor libssl-dev curl
 
 # Build dependencies
 RUN easy_install pip==1.4.1
