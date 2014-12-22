@@ -57,6 +57,10 @@ RUN ssh-keyscan -H github.com > /etc/ssh/ssh_known_hosts
 ADD . /home/docker/base/
 WORKDIR /home/docker/base/
 
+# Save the revision so we can easily know which base image was used to create
+# our final docker image
+RUN git rev-parse --short HEAD > git-revision
+
 RUN rm -rf .git/
 RUN rm -rf .gitignore
 
