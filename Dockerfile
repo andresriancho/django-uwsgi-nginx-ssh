@@ -17,7 +17,7 @@ RUN apt-get update
 # Install required packages
 RUN apt-get install -y build-essential git joe openssh-server coreutils gzip \
                        python python-dev python-setuptools wget ca-certificates \
-                       nginx supervisor libssl-dev curl
+                       nginx supervisor libssl-dev curl rsyslog
 
 # Build dependencies
 RUN easy_install pip==1.4.1
@@ -67,6 +67,7 @@ RUN ln -s /home/docker/base/config/supervisord-nginx.conf /etc/supervisor/conf.d
 RUN ln -s /home/docker/base/config/supervisord-uwsgi.conf /etc/supervisor/conf.d/
 RUN ln -s /home/docker/base/config/supervisord-sshd.conf /etc/supervisor/conf.d/
 RUN ln -s /home/docker/base/config/supervisord-newrelic.conf /etc/supervisor/conf.d/
+RUN ln -s /home/docker/base/config/supervisord-rsyslog.conf /etc/supervisor/conf.d/
 
 # Cleanup to reduce image size
 RUN apt-get clean
