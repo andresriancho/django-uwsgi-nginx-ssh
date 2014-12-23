@@ -63,6 +63,7 @@ touch /etc/default/locale
 
 # TODO: Disable imklog for now, re-enable it later! Will be important to debug OOM
 RUN sed -i 's/$ModLoad imklog/#$ModLoad imklog/' /etc/rsyslog.conf
+RUN sed -i 's/$KLogPermitNonKernelFacility/#$KLogPermitNonKernelFacility/' /etc/rsyslog.conf
 
 # copy our code
 ADD . /home/docker/base/
