@@ -55,7 +55,8 @@ RUN ssh-keyscan -H github.com > /etc/ssh/ssh_known_hosts
 
 # Workaround for log error
 # https://bugs.launchpad.net/ubuntu/+source/rsyslog/+bug/830046
-RUN sed -i 's/xconsole/console/;' /etc/rsyslog.d/50-default.conf
+RUN rm -rf /etc/rsyslog.d/50-default.conf
+RUN ln -s /home/docker/base/config/50-default.conf /etc/rsyslog.d/
 
 # Workaround for log error
 # https://bugs.launchpad.net/ubuntu/+source/sudo/+bug/155794
