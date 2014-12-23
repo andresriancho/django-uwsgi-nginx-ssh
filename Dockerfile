@@ -60,7 +60,7 @@ RUN ln -s /home/docker/base/config/50-default.conf /etc/rsyslog.d/
 
 # Workaround for log error
 # https://bugs.launchpad.net/ubuntu/+source/sudo/+bug/155794
-touch /etc/default/locale
+RUN touch /etc/default/locale
 
 # TODO: Disable imklog for now, re-enable it later! Will be important to debug OOM
 RUN sed -i 's/$ModLoad imklog/#$ModLoad imklog/' /etc/rsyslog.conf
