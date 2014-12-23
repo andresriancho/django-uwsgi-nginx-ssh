@@ -43,6 +43,11 @@ something usable you'll have to:
  
  * Place your static and media files in `/home/docker/code/static/` and
   `/home/docker/code/media/` respectively.
+
+## Source
+The source for this image can be found [here](https://github.com/andresriancho/django-uwsgi-nginx-ssh),
+I'm not using automated builds since they are really slow, instead I'm building
+the images at CircleCI and then pushing them to the registry.
   
 ## Pushing a new version
 ```
