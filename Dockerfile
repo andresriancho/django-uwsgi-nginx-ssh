@@ -53,6 +53,14 @@ RUN rm /etc/nginx/sites-enabled/default
 # We trust github's SSH
 RUN ssh-keyscan -H github.com > /etc/ssh/ssh_known_hosts
 
+# Workaround for log error
+# https://bugs.launchpad.net/ubuntu/+source/rsyslog/+bug/830046
+sed -i 's/xconsole/console/;' /etc/rsyslog.d/50-default.conf
+
+# Disable imklog
+# TODO: Re-enable it!
+sed -i 's/$ModLoad imklog/#$ModLoad imklog/' /etc/rsyslog.conf
+
 # copy our code
 ADD . /home/docker/base/
 WORKDIR /home/docker/base/
