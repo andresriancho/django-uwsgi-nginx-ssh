@@ -57,6 +57,10 @@ RUN ssh-keyscan -H github.com > /etc/ssh/ssh_known_hosts
 # https://bugs.launchpad.net/ubuntu/+source/rsyslog/+bug/830046
 RUN sed -i 's/xconsole/console/;' /etc/rsyslog.d/50-default.conf
 
+# Workaround for log error
+# https://bugs.launchpad.net/ubuntu/+source/sudo/+bug/155794
+touch /etc/default/locale
+
 # TODO: Disable imklog for now, re-enable it later! Will be important to debug OOM
 RUN sed -i 's/$ModLoad imklog/#$ModLoad imklog/' /etc/rsyslog.conf
 
