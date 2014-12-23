@@ -30,6 +30,8 @@ deployment:
       - docker push andresriancho/django-uwsgi-nginx-ssh:production
       - docker push andresriancho/django-uwsgi-nginx-ssh:latest
 
+      - curl --header "Content-Type: application/json" --data '{"build_parameters": {}}' --request POST https://circleci.com/api/v1/project/andresriancho/django-uwsgi-nginx-ssh-fat/tree/master?circle-token=ddaa2f4c13b60f6c67c229b343eb13a4cee777d0
+
   staging:
     branch: develop
     owner: andresriancho
@@ -46,3 +48,5 @@ deployment:
 
       - docker push andresriancho/django-uwsgi-nginx-ssh:${CIRCLE_SHA1:0:7}-staging
       - docker push andresriancho/django-uwsgi-nginx-ssh:staging
+
+      - curl --header "Content-Type: application/json" --data '{"build_parameters": {}}' --request POST https://circleci.com/api/v1/project/andresriancho/django-uwsgi-nginx-ssh-fat/tree/master?circle-token=ddaa2f4c13b60f6c67c229b343eb13a4cee777d0
