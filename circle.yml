@@ -6,8 +6,8 @@ machine:
 dependencies:
   post:
     # Setup all requirements
-    - pip install --upgrade pip
-    - pip install docker-tag-naming
+    - sudo pip install --upgrade pip
+    - sudo pip install docker-tag-naming
 
 
 test:
