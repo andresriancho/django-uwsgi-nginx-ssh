@@ -11,6 +11,12 @@ dependencies:
 
 
 test:
+  pre:
+    - docker info
+    - docker version
+    - docker images
+    - pip freeze
+
   override:
     - echo "No tests."
 
