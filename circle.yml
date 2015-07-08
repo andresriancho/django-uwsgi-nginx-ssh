@@ -2,6 +2,14 @@ machine:
   services:
     - docker
 
+
+dependencies:
+  post:
+    # Setup all requirements
+    - pip install --upgrade pip
+    - pip install docker-tag-naming
+
+
 test:
   override:
     - echo "No tests."
@@ -18,15 +26,16 @@ deployment:
       #
       # Build the docker image and upload it to the registry
       #
-      - docker build -t andresriancho/django-uwsgi-nginx-ssh:${CIRCLE_SHA1:0:7}-production .
+      - docker build -t andresriancho/django-uwsgi-nginx-ssh .
+      - docker-tag-naming bump andresriancho/django-uwsgi-nginx-ssh ${CIRCLE_BRANCH} --commit-id ${CIRCLE_SHA1:0:7} > /tmp/docker-tag.txt
 
       # Push the new image to docker registry
       - sed "s/<EMAIL>/$DOCKER_EMAIL/;s/<AUTH>/$DOCKER_AUTH/" < dockercfg.template > ~/.dockercfg
 
-      - docker tag andresriancho/django-uwsgi-nginx-ssh:${CIRCLE_SHA1:0:7}-production andresriancho/django-uwsgi-nginx-ssh:production
-      - docker tag andresriancho/django-uwsgi-nginx-ssh:${CIRCLE_SHA1:0:7}-production andresriancho/django-uwsgi-nginx-ssh:latest
+      - docker tag andresriancho/django-uwsgi-nginx-ssh andresriancho/django-uwsgi-nginx-ssh:production
+      - docker tag andresriancho/django-uwsgi-nginx-ssh andresriancho/django-uwsgi-nginx-ssh:`cat /tmp/docker-tag.txt`
 
-      - docker push andresriancho/django-uwsgi-nginx-ssh:${CIRCLE_SHA1:0:7}-production
+      - docker push andresriancho/django-uwsgi-nginx-ssh:`cat /tmp/docker-tag.txt`
       - docker push andresriancho/django-uwsgi-nginx-ssh:production
       - docker push andresriancho/django-uwsgi-nginx-ssh:latest
 
@@ -39,14 +48,16 @@ deployment:
       #
       # Build the docker image and upload it to the registry
       #
-      - docker build -t andresriancho/django-uwsgi-nginx-ssh:${CIRCLE_SHA1:0:7}-staging .
+      - docker build -t andresriancho/django-uwsgi-nginx-ssh .
+      - docker-tag-naming bump andresriancho/django-uwsgi-nginx-ssh ${CIRCLE_BRANCH} --commit-id ${CIRCLE_SHA1:0:7} > /tmp/docker-tag.txt
 
       # Push the new image to docker registry
       - sed "s/<EMAIL>/$DOCKER_EMAIL/;s/<AUTH>/$DOCKER_AUTH/" < dockercfg.template > ~/.dockercfg
 
-      - docker tag andresriancho/django-uwsgi-nginx-ssh:${CIRCLE_SHA1:0:7}-staging andresriancho/django-uwsgi-nginx-ssh:staging
+      - docker tag andresriancho/django-uwsgi-nginx-ssh andresriancho/django-uwsgi-nginx-ssh:staging
+      - docker tag andresriancho/django-uwsgi-nginx-ssh andresriancho/django-uwsgi-nginx-ssh:`cat /tmp/docker-tag.txt`
 
-      - docker push andresriancho/django-uwsgi-nginx-ssh:${CIRCLE_SHA1:0:7}-staging
+      - docker push andresriancho/django-uwsgi-nginx-ssh:`cat /tmp/docker-tag.txt`
       - docker push andresriancho/django-uwsgi-nginx-ssh:staging
 
       - 'curl --header "Content-Type: application/json" --request POST https://circleci.com/api/v1/project/andresriancho/django-uwsgi-nginx-ssh-fat/tree/master?circle-token=ddaa2f4c13b60f6c67c229b343eb13a4cee777d0'
